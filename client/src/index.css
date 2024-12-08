@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom Scrollbar for Webkit browsers */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a3a3a3; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+.hero-container {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.background-image {
+  position: absolute;
+  width: 60%; /* Adjust width to cover 60% to 70% */
+  height: 70%; /* Adjust height to cover 60% to 70% */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7; /* Semi-transparent */
+  transition: transform 0.5s ease;
+}
+
+.image1 {
+  background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxmb3JtJTIwcG9zdGVyfGVufDB8fHx8MTY4MjYyMzI5Mw&ixlib=rb-4.0.3&q=80&w=1080');
+  transform: rotate(-10deg) translateX(-20%); /* Tilt and shift */
+}
+
+.image2 {
+  background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxmb3JtJTIwcG9zdGVyfGVufDB8fHx8MTY4MjYyMzI5Mw&ixlib=rb-4.0.3&q=80&w=1080');
+  transform: rotate(5deg) translateX(10%); /* Tilt and shift */
+}
+
+.image3 {
+  background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxmb3JtJTIwcG9zdGVyfGVufDB8fHx8MTY4MjYyMzI5Mw&ixlib=rb-4.0.3&q=80&w=1080');
+  transform: rotate(15deg) translateX(-10%); /* Tilt and shift */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Ensure content is above background images */
+}
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
