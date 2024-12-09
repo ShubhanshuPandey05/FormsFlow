@@ -596,3 +596,122 @@ export const sendMailWithoutSignUp = async (req, res) => {
         res.status(200).json({ message: 'Email sent successfully', info });
     });
 };
+export const sendMailWithoutSignUpCustom = async (req, res) => {
+    // console.log("hii");
+    const email =  req.params.mail;
+    const {heading} = req.body;
+    const {formData} = req.body;
+    const {text} = req.body;
+    // console.log("hii1");
+    
+    // console.log("Received form data:", formData);
+
+    // Format formData into a string
+    const formText = `
+    <table style="width: 100%; border-collapse: collapse;">
+        <tbody>
+            ${Object.entries(formData)
+              .map(
+                ([key, value]) => `
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px;">${key}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">${value}</td>
+                </tr>`
+              )
+              .join("")}
+        </tbody>
+    </table>`;
+
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: `New Submission For Your Form`,
+        // text: formText || "Your default text content here",
+        html: `
+            <html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+        }
+        .email-body {
+            padding: 20px;
+            text-align: left;
+            color: #333;
+        }
+        .email-footer {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            padding: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .cta-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h2>Welcome to Our Service!</h2>
+        </div>
+        <div class="email-body">
+            <p>Hello,</p>
+            <p>${heading}</p>
+            <p>The following data was given by the user</p>
+        </div>
+        <div>
+            ${formText}
+        </div>
+        <div>${text}</div>
+        <div class="email-footer">
+            <p>Thank you for trusting us.</p>
+            <p>Best regards,</p>
+            <p>FormsFlow</p>
+        </div>
+    </div>
+</body>
+</html>
+
+        `,
+    };
+
+
+    // console.log(mailOptions);
+
+
+    transporter.sendMail(mailOptions, async (error, info) => {
+        if (error) {
+            console.error("Error sending email:", error);
+            return res.status(500).json({ message: 'Error sending email', error });
+        }
+        res.status(200).json({ message: 'Email sent successfully', info });
+    });
+};
