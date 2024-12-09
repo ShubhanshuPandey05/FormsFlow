@@ -14,7 +14,8 @@ export default function AddMail() {
         let authUser = localStorage.getItem('authUser');
         console.log(authUser);
 
-        let response = await fetch(`http://localhost:3000/api/mail/addmail/`, {
+        let response = await fetch(`https://forms-flow-api.vercel.app/api/mail/addmail/`, {
+        // let response = await fetch(`http://localhost:3000/api/mail/addmail/`, {
         // let response = await fetch(`${process.env.BASE_LINK}/mail/addmail/`, {
             method: "post",
             headers: {

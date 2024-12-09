@@ -12,7 +12,8 @@ const useSignUp = () => {
 
         if (!success) return;
 
-        let response = await fetch(`http://localhost:3000/api/auth/signUp/`, {
+        let response = await fetch(`https://forms-flow-api.vercel.app/api/auth/signUp/`, {
+        // let response = await fetch(`http://localhost:3000/api/auth/signUp/`, {
         // let response = await fetch(`${process.env.BASE_LINK}/auth/signUp/`, {
             method: "post",
             headers: {

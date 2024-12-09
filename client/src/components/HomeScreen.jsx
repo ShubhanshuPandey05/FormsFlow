@@ -44,7 +44,8 @@ const HomeScreen = () => {
         if (selectedForm) {
             const fetchSubmissions = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3000/api/form/getformdata/${selectedForm}`, {
+                    const response = await fetch(`https://forms-flow-api.vercel.app/api/form/getformdata/${selectedForm}`, {
+                    // const response = await fetch(`http://localhost:3000/api/form/getformdata/${selectedForm}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

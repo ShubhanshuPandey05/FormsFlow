@@ -13,10 +13,19 @@ import { getData } from './controller/commonController.js';
 
 
 const app = express();
+const allowedOrigins = ['http://localhost:5173', 'https://your-production-domain.com'];
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Your front-end local domain
-  credentials: true // Allow credentials (cookies) to be sent
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
+
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
