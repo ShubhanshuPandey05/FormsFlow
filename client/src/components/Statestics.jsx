@@ -8,7 +8,8 @@ const SkillsSection = () => {
     const [stats,setStats] = useState({});
     useEffect(() => {
         const getData = async () => {
-            const response = await fetch('https://forms-flow-api.vercel.app/api/getdata', {
+            const response = await fetch('https://formsflow.onrender.com/api/getdata', {
+            // const response = await fetch('https://forms-flow-api.vercel.app/api/getdata', {
             // const response = await fetch('http://localhost:3000/api/getdata', {
                 method: 'GET',
                 headers: {

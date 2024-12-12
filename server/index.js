@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 
 dotenv.config();
 
-// Configure Nodemailer transport
+
 
 
 
@@ -47,6 +47,27 @@ app.use('/api/sendmail', sendMail);
 app.use('/api/mail',addMail)
 app.use('/api/form',addForm)
 app.get('/api/getData',getData)
+app.get('/',(req,res)=>{
+  res.send("FormsFlow Api")
+})
+
+
+function pingServer() {
+  fetch('https://order-flow-api-ek8r.onrender.com')
+      .then(response => {
+          if (response.ok) {
+              console.log('Server is reachable');
+          } else {
+              console.error('Server responded with an error:', response.status);
+          }
+      })
+      .catch(error => {
+          console.error('Error pinging the server:', error);
+      });
+}
+
+// Ping the server every 30 seconds
+setInterval(pingServer, 30000);
 
 app.listen(PORT, () => {
   connectionToDatabase();
