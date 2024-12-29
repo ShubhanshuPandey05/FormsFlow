@@ -15,7 +15,8 @@ const SkillsSection = () => {
             // const response = await fetch('https://forms-flow-api.vercel.app/api/getdata', {
             showLoading();
 
-            const response = await fetch('http://localhost:3000/api/getdata', {
+            const response = await fetch('/api/getdata', {
+            // const response = await fetch('http://localhost:3000/api/getdata', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

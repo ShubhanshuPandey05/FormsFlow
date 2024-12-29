@@ -1,5 +1,6 @@
 // server.js
 import express from 'express';
+import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import connectionToDatabase from './database/databaseConnection.js';
 import authentication from './routes/auth.js';
@@ -18,22 +19,19 @@ const __dirname = path.dirname(__filename);
 
 
 const app = express();
-const allowedOrigins = ['http://localhost:5173', 'https://your-production-domain.com', 'http://127.0.0.1:5500'];
+// const allowedOrigins = ['http://localhost:5173', 'https://your-production-domain.com', 'http://127.0.0.1:5500'];
 
 app.use(cors({
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not Allowed By CORS'));
-    }
-  },
+  origin: ['http://localhost:5173', 'https://your-production-domain.com', 'http://127.0.0.1:5500'],
   credentials: true
 }));
+
+app.options('*', cors());
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
@@ -82,5 +80,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   connectionToDatabase();
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

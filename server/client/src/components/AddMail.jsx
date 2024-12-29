@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import toast from "react-hot-toast";
+import { useLoading } from '../context/LoadingContext';
 
 export default function AddMail() {
     const [email, setEmail] = useState('');
     const [emailList, setEmailList] = useState([]);
     const [linkSended, setLinkSended] = useState(false);
+    const { showLoading, hideLoading } = useLoading();
 
     const handleEmailChange = (e) => setEmail(e.target.value);
 
     const handleAddEmail = async (e) => {
         e.preventDefault();
 
+        showLoading();
         let authUser = localStorage.getItem('authUser');
         console.log(authUser);
 
         // let response = await fetch(`https://forms-flow-api.vercel.app/api/mail/addmail/`, {
-        let response = await fetch(`http://localhost:3000/api/mail/addmail/`, {
-        // let response = await fetch(`${process.env.BASE_LINK}/mail/addmail/`, {
+        let response = await fetch(`/api/mail/addmail/`, {
+            // let response = await fetch(`http://localhost:3000/api/mail/addmail/`, {
+            // let response = await fetch(`${process.env.BASE_LINK}/mail/addmail/`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -32,6 +36,7 @@ export default function AddMail() {
             toast.error(result.message)
             console.log(result);
         }
+        hideLoading();
     };
 
     const addAnothermail = () => {

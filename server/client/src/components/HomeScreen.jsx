@@ -49,7 +49,8 @@ const HomeScreen = () => {
                 try {
                     showLoading();
                     // const response = await fetch(`https://forms-flow-api.vercel.app/api/form/getformdata/${selectedForm}`, {
-                    const response = await fetch(`http://localhost:3000/api/form/getformdata/${selectedForm}`, {
+                    const response = await fetch(`/api/form/getformdata/${selectedForm}`, {
+                    // const response = await fetch(`http://localhost:3000/api/form/getformdata/${selectedForm}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -129,10 +130,10 @@ const HomeScreen = () => {
                         <div className="mt-10 text-center">
                             <h2 className="text-3xl font-bold">All Submissions</h2>
                             <p className="mt-4 text-lg">Total Submissions: {totalSubmissions}</p>
-                            <div className="mt-6">
+                            <div className="mt-6 overflow-auto w-[92vw] md:w-full m-auto">
                                 {formSubmissions.length > 0 ? (
                                     <>
-                                        <div className="p-6 border rounded-lg shadow-md">
+                                        <div className="p-6 border rounded-lg shadow-md overflow-auto">
                                             <table className="mt-4 w-full border-collapse border border-gray-200">
                                                 <thead>
                                                     <tr>
@@ -166,19 +167,19 @@ const HomeScreen = () => {
                                         <div className="mt-6 flex justify-center gap-4">
                                             <button
                                                 onClick={() => exportToExcel(formSubmissions)}
-                                                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                                className="px-3 py-1 text-sm md:text-base md:px-4 md:py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                                             >
                                                 Export to Excel
                                             </button>
                                             <button
                                                 onClick={() => exportToPDF(formSubmissions)}
-                                                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                                                className="px-3 py-1 text-sm md:text-base md:px-4 md:py-2 bg-red-500 text-white rounded hover:bg-red-600"
                                             >
                                                 Export to PDF
                                             </button>
                                             <button
                                                 onClick={() => exportToText(formSubmissions)}
-                                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                                                className="px-3 py-1 text-sm md:text-base md:px-4 md:py-2 bg-green-500 text-white rounded hover:bg-green-600"
                                             >
                                                 Export to Text
                                             </button>

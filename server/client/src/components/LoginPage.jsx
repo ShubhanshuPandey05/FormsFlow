@@ -70,14 +70,14 @@ const LoginPage = () => {
                 </div>
               </div>
             </div>
-            <div className="d-flex flex-wrap align-items-center justify-content-between pb-4">
+            {/* <div className="d-flex flex-wrap align-items-center justify-content-between pb-4">
               <a
                 className="fs-sm fw-semibold text-decoration-none my-1"
                 href="account-password-recovery.html"
               >
                 Forgot password?
               </a>
-            </div>
+            </div> */}
             <button className="btn btn-lg btn-primary bg-blue-700 hover:bg-blue-800 w-100 mb-4" type="submit">
               Sign in
             </button>

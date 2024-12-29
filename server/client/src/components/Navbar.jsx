@@ -15,18 +15,20 @@ const Navbar = () => {
   return (
     <nav className="bg-secondary md:px-8 fixed w-full z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/">
-          <div className="text-2xl font-bold flex text-[#02195c]">
-            <img src="assets/app-icons/Logo.png" alt="Logo" className="w-8 mx-2" />
-            FormsFlow
-          </div>
-        </Link>
+        <div className='w-72 flex justify-start'>
+          <Link to="/">
+            <div className="text-2xl font-bold flex text-[#02195c]">
+              <img src="assets/app-icons/Logo.png" alt="Logo" className="w-8 mx-2" />
+              FormsFlow
+            </div>
+          </Link>
+        </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button
             className="text-gray-700 hover:text-blue-600"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}  
           >
             {isMenuOpen ? (
               <svg
@@ -63,7 +65,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 w-72 justify-center">
           {["Features", "Get Started", "About Us"].map((item, index) => (
             <div className="relative group" key={index}>
               <Link
@@ -82,7 +84,7 @@ const Navbar = () => {
         {/* Auth Buttons */}
         {
           !isAuth ? (
-            <div className="hidden md:flex space-x-4">
+            <div className="hidden md:flex space-x-4 w-72 justify-end">
               <Link to="/signup">
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
                   Sign Up
@@ -95,12 +97,14 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <button
-              className="hidden md:flex px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition duration-300"
-              onClick={handleLogOut}
-            >
-              Logout
-            </button>
+            <div className='hidden md:flex w-72 justify-end'>
+              <button
+                className="hidden md:flex px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition duration-300"
+                onClick={handleLogOut}
+              >
+                Logout
+              </button>
+            </div>
           )
         }
       </div>

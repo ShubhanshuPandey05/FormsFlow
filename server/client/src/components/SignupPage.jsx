@@ -27,7 +27,10 @@ const SignupPage = () => {
     e.preventDefault();
 
     // Handle signup logic here
-    await signUp({ Email, Password, Name, setIsVisible });
+    if (await signUp({ Email, Password, ConfirmPassword, Name, setIsVisible })){
+      return true;
+    }
+    return false;
   };
   const handleSubmit2 = async (e) => {
     e.preventDefault();
@@ -107,14 +110,14 @@ const SignupPage = () => {
                   <span className="password-toggle-indicator"></span>
                 </label>
               </div>
-              <div className="pb-4">
+              {/* <div className="pb-4">
                 <div className="form-check my-2">
                   <input className="form-check-input" type="checkbox" id="terms" required />
                   <label className="form-check-label ms-1" htmlFor="terms">
                     I agree to <a href="#">Terms &amp; Conditions</a>
                   </label>
                 </div>
-              </div>
+              </div> */}
               <button className="btn btn-lg btn-primary w-100 mb-4 bg-blue-700 hover:bg-blue-800" type="submit">
                 Sign up
               </button>

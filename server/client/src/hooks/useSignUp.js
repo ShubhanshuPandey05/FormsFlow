@@ -11,13 +11,14 @@ const useSignUp = () => {
 
     const signUp = async (data) => {
 
-        const success = handleErrorInputs(data.Email, data.Password, data.Name);
+        const success = handleErrorInputs(data.Email, data.Password, data.Name, data.ConfirmPassword);
 
         if (!success) return;
 
         showLoading();
         // let response = await fetch(`https://forms-flow-api.vercel.app/api/auth/signUp/`, {
-        let response = await fetch(`http://localhost:3000/api/auth/signUp/`, {
+        // let response = await fetch(`http://localhost:3000/api/auth/signUp/`, {
+        let response = await fetch(`/api/auth/signUp/`, {
             // let response = await fetch(`${process.env.BASE_LINK}/auth/signUp/`, {
             method: "post",
             headers: {
@@ -83,12 +84,15 @@ const useSignUpValidation = () => {
 }
 
 
-function handleErrorInputs(email, password, name) {
+function handleErrorInputs(email, password, name, ConfirmPassword) {
     if (!email || !password || !name) {
         toast.error('Please fill all fields');
         return false;
     } else if (password.length < 6) {
         toast.error('Password must be at least 6 characters long')
+        return false;
+    } else if (password != ConfirmPassword){
+        toast.error('Password and Confirm Password must be same')
         return false;
     }
     return true;

@@ -16,7 +16,8 @@ const useLogin = () => {
         showLoading();
 
         // let response = await fetch(`https://forms-flow-api.vercel.app/api/auth/login/`,{
-        let response = await fetch(`http://localhost:3000/api/auth/login/`,{
+        let response = await fetch(`/api/auth/login/`,{
+        // let response = await fetch(`http://localhost:3000/api/auth/login/`,{
         // let response = await fetch(`${process.env.BASE_LINK}/auth/login/`,{
             method: "post",
             headers: {

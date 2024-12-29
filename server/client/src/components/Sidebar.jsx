@@ -1,6 +1,8 @@
 // src/components/Sidebar.js
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
+import { useLoading } from '../context/LoadingContext';
 
 const Sidebar = ({ setSelectedForm, selectedForm }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,15 +11,19 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [formList, setFormList] = useState([]);
     const [formName, setFormName] = useState('');
+    const { showLoading, hideLoading } = useLoading();
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const getData = async () => {
             try {
+                showLoading();
                 const storedUser = localStorage.getItem("authUser")
                 const parsedUser = JSON.parse(storedUser);
                 // const response = await fetch(`https://forms-flow-api.vercel.app/api/mail/getmail`, {
-                const response = await fetch(`http://localhost:3000/api/mail/getmail`, {
+                const response = await fetch(`/api/mail/getmail`, {
+                    // const response = await fetch(`http://localhost:3000/api/mail/getmail`, {
                     // const response = await fetch(`${process.env.BASE_LINK}/mail/getmail`, {
 
                     method: 'POST',
@@ -27,34 +33,42 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
                     credentials: "include",
                     body: JSON.stringify({ email: parsedUser.Email })
                 })
-                // const response2 = await fetch(`https://forms-flow-api.vercel.app/api/form/getform`, {
-                const response2 = await fetch(`http://localhost:3000/api/form/getform`, {
-                    // const response2 = await fetch(`${process.env.BASE_LINK}/api/form/getform`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({ email: selectedEmail })
-                })
                 if (!response.ok) {
                     toast.error('Failed to fetch mails');
                 }
 
                 const data = await response.json();
                 setMail(data.Mails);
-                const data2 = await response2.json();
-                console.log(data2.Forms);
+                // const response2 = await fetch(`https://forms-flow-api.vercel.app/api/form/getform`, {
+                if (selectedEmail) {
+                    const response2 = await fetch(`/api/form/getform`, {
+                        // const response2 = await fetch(`http://localhost:3000/api/form/getform`, {
+                        // const response2 = await fetch(`${process.env.BASE_LINK}/api/form/getform`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({ email: selectedEmail })
+                    })
+
+                    const data2 = await response2.json();
+                    const formNames = data2.Forms.map(form => form.Name);
+                    setFormList(formNames);
+                }
+                // console.log(data2.Forms);
 
                 // Extracting just the names of the forms and setting them to formList
-                const formNames = data2.Forms.map(form => form.Name);
-                setFormList(formNames);
 
+                hideLoading();
+                return
 
 
             } catch (error) {
-
+                toast.error("Error in fetching the data please login again")
             }
+
+            hideLoading();
         }
 
         getData()
@@ -93,7 +107,8 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
         e.preventDefault();
         if (formName.trim() === '') return;
         // const response = await fetch('https://forms-flow-api.vercel.app/api/form/addform', {
-        const response = await fetch('http://localhost:3000/api/form/addform', {
+        const response = await fetch('/api/form/addform', {
+            // const response = await fetch('http://localhost:3000/api/form/addform', {
             // const response = await fetch(`${process.env.BASE_LINK}/form/addform`, {
             method: 'POST',
             headers: {
@@ -210,7 +225,7 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
                             ))}
                         </ul>
                     </div>
-                </div>:""
+                </div> : ""
 
                 }
             </div>
