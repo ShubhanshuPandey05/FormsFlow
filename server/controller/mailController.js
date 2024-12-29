@@ -370,10 +370,10 @@ export const getMail = async (req, res) => {
 
 export const sendMail = async (req, res) => {
     const formData = req.body;
-    console.log("Received form data:", formData);
+    // console.log("Received form data:", formData);
 
     const accessToken = req.params.accesstoken;
-    console.log("Token:", accessToken);
+    // console.log("Token:", accessToken);
 
     const savedForm = await Form.findOne({ AccessToken: accessToken });
     if (!savedForm) {
@@ -602,7 +602,7 @@ export const sendMailWithoutSignUp = async (req, res) => {
         }
         const newMailData = new MailData({ subject: `New Submission`, text: formData })
         await newMailData.save()
-        res.status(200).json({ message: 'Email sent successfully', info });
+        res.status(200).sendFile(path.join(__dirname, 'thankyou.html'));
     });
 };
 export const sendMailWithoutSignUpCustom = async (req, res) => {
@@ -723,6 +723,6 @@ export const sendMailWithoutSignUpCustom = async (req, res) => {
         }
         const newMailData = new MailData({ subject: `New Submission`, text: formData })
         await newMailData.save()
-        res.status(200).json({ message: 'Email sent successfully', info });
+        res.status(200).sendFile(path.join(__dirname, 'thankyou.html'));
     });
 };

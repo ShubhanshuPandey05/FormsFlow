@@ -48,7 +48,7 @@ const HeroSection = () => {
         <div className="mt-10 justify-center ">
 
           <pre className="whitespace-pre-wrap bg-gray-900 text-left text-sm md:text-base md:px-5 w-fit m-auto">
-            {`<form action="`}<span className='text-yellow-300'>https://forms-flow-api.vercel.app/api/sendmail/mail/your-mail-address</span>{`" method="`}<span className='text-yellow-300'>post</span>{`">`}
+            {`<form action="`}<span className='text-yellow-300'>https://forms-flow.onrender.com/api/sendmail/mail/your-mail-address</span>{`" method="`}<span className='text-yellow-300'>post</span>{`">`}
           </pre>
           <p className="text-red-700 md:w-[35rem] m-auto">By using this method you won't be able to manage your data in the site it will directly send to your mail address</p>
           {/* <p className="text-green-700 md:w-[35rem] mt-4 m-auto">We recommend you to Get Started by signing up to our site to secure your data with us and for many more features.</p> */}
