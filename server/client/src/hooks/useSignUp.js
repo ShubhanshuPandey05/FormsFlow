@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/authContext";
 import toast from "react-hot-toast";
+import { useLoading } from "../context/LoadingContext";
 
 const useSignUp = () => {
     const navigator = useNavigate();
     const { setIsAuth } = useAuthContext();
+    const { showLoading, hideLoading } = useLoading();
+
 
     const signUp = async (data) => {
 
@@ -12,9 +15,10 @@ const useSignUp = () => {
 
         if (!success) return;
 
-        let response = await fetch(`https://forms-flow-api.vercel.app/api/auth/signUp/`, {
-        // let response = await fetch(`http://localhost:3000/api/auth/signUp/`, {
-        // let response = await fetch(`${process.env.BASE_LINK}/auth/signUp/`, {
+        showLoading();
+        // let response = await fetch(`https://forms-flow-api.vercel.app/api/auth/signUp/`, {
+        let response = await fetch(`http://localhost:3000/api/auth/signUp/`, {
+            // let response = await fetch(`${process.env.BASE_LINK}/auth/signUp/`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -25,13 +29,16 @@ const useSignUp = () => {
         const result = await response.json()
         if (response.ok) {
             toast.success("Otp send Successfully");
+            data.setIsVisible(true);
+            hideLoading();
         } else {
             navigator("/signUp");
             toast.error(result.message);
-            toast.error("wrong");
+            toast.error("Something went wrong");
+            hideLoading();
         }
 
-
+        hideLoading();
 
 
     }
@@ -50,7 +57,7 @@ const useSignUpValidation = () => {
 
 
         let response = await fetch(`http://localhost:3000/api/auth/signUp/otp`, {
-        // let response = await fetch(`${process.env.BASE_LINK}/auth/signUp/otp`, {
+            // let response = await fetch(`${process.env.BASE_LINK}/auth/signUp/otp`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

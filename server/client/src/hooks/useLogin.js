@@ -1,19 +1,22 @@
 import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../context/authContext";
 import toast from "react-hot-toast";
+import { useLoading } from "../context/LoadingContext";
 
 const useLogin = () => {
     const navigator = useNavigate()
     const {setIsAuth} =useAuthContext();
+    const { showLoading, hideLoading } = useLoading();
 
     const login = async (data) => {
 
         const success = handleErrorInputs(data.Email, data.Password);
 
         if (!success) return; 
+        showLoading();
 
-        let response = await fetch(`https://forms-flow-api.vercel.app/api/auth/login/`,{
-        // let response = await fetch(`http://localhost:3000/api/auth/login/`,{
+        // let response = await fetch(`https://forms-flow-api.vercel.app/api/auth/login/`,{
+        let response = await fetch(`http://localhost:3000/api/auth/login/`,{
         // let response = await fetch(`${process.env.BASE_LINK}/auth/login/`,{
             method: "post",
             headers: {
@@ -28,9 +31,12 @@ const useLogin = () => {
             setIsAuth(true)
             navigator("/")
             toast.success("Login Success");
+            hideLoading()
         }else{
             toast.error(JSON.stringify(result));
+            hideLoading()
         }
+        hideLoading();
 
     }
 

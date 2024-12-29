@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import * as XLSX from "xlsx";
 import { jsPDF } from "jspdf";
+import { useLoading } from '../context/LoadingContext';
 
 const HomeScreen = () => {
     const [selectedForm, setSelectedForm] = useState('');
     const [formSubmissions, setFormSubmissions] = useState([]);
     const [totalSubmissions, setTotalSubmissions] = useState(0);
     const [submissionLink, setSubmissionLink] = useState('');
+    const { showLoading, hideLoading } = useLoading();
+
 
     // Export to Excel
     const exportToExcel = (data, fileName = "data.xlsx") => {
@@ -44,8 +47,9 @@ const HomeScreen = () => {
         if (selectedForm) {
             const fetchSubmissions = async () => {
                 try {
-                    const response = await fetch(`https://forms-flow-api.vercel.app/api/form/getformdata/${selectedForm}`, {
-                    // const response = await fetch(`http://localhost:3000/api/form/getformdata/${selectedForm}`, {
+                    showLoading();
+                    // const response = await fetch(`https://forms-flow-api.vercel.app/api/form/getformdata/${selectedForm}`, {
+                    const response = await fetch(`http://localhost:3000/api/form/getformdata/${selectedForm}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -59,6 +63,7 @@ const HomeScreen = () => {
                 } catch (error) {
                     console.error("Error fetching submissions:", error);
                 }
+                hideLoading();
             };
             fetchSubmissions();
         }
@@ -77,9 +82,9 @@ const HomeScreen = () => {
                     {/* Form Link Section */}
 
                     <div className="mt-10 flex justify-center">
-                        <div className="bg-gray-800 text-white rounded-lg shadow-lg p-6 w-full max-w-3xl">
+                        <div className="bg-gray-800 text-white rounded-lg shadow-lg p-6 w-fit">
                             <h2 className="text-2xl font-semibold mb-4 text-white">Html Form</h2>
-                            <div className="rounded-lg h-72 overflow-hidden">
+                            <div className="rounded-lg h-72 overflow-auto w-[80vw] md:w-fit">
                                 <pre className="whitespace-pre-wrap bg-gray-900">
                                     {`<form action="`}<span className='text-yellow-300'>{submissionLink ? submissionLink : "FormsFlow Link"}</span>{`" method="`}<span className='text-yellow-300'>post</span>{`">
     <label htmlFor="name">Name:</label>

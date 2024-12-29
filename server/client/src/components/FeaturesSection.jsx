@@ -23,11 +23,10 @@ const FeaturesSection = () => {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gy-3 gy-sm-4 gy-xl-5 gx-4 gx-md-5 pb-xxl-4 mb-sm-2 mb-lg-0 mb-xl-2">
           <div className="col">
             <div className="text-center px-xxl-4">
-
-
-              <h3 className="h4 mb-2">Comments on tasks</h3>
-              <p>Id mollis consectetur congue egestas egestas suspendisse blandit in the justo eget maximus accumsan lorem ligula malesuada.</p>
-            </div>
+              <img src="./assets/Gear Icon.png" className='w-20 m-auto d-inline-block mb-3 mt-1 mb-md-4' alt="" />
+              <h3 className="h4 mb-2 mt-1">Easy Integration</h3>
+              <p>Effortlessly connect with your existing tools and platforms. Our solution is designed to integrate smoothly, saving time and reducing complexity in your workflows.</p>
+              </div>
           </div>
           <div className="col">
             <div className="text-center px-xxl-4">
@@ -36,8 +35,8 @@ const FeaturesSection = () => {
                 <path className="text-[#f3e9c0]" d="M40.7178 6.25268C54.9674 6.6152 66.9438 16.862 69.249 30.6635L69.227 30.7654L69.1641 30.9135L69.1729 31.32C69.1402 31.8586 68.9323 32.3768 68.5739 32.7954C68.2006 33.2314 67.6906 33.5283 67.129 33.6436L66.7865 33.6906L42.7841 35.2458C41.9857 35.3245 41.1907 35.0671 40.597 34.5375C40.1022 34.0962 39.7859 33.5004 39.6965 32.8585L38.0855 8.89094C38.0574 8.8099 38.0574 8.72204 38.0855 8.641C38.1075 7.98035 38.3983 7.35587 38.8929 6.90709C39.3876 6.45831 40.0448 6.22262 40.7178 6.25268Z" fill="currentColor"></path>
               </svg>
               <h3 className="h4 mb-2">Forms analytics</h3>
-              <p>Non imperdiet facilisis nulla tellus morbi scelerisque eget adipiscing out vulputate convallis justo sed tellus vehicula.</p>
-            </div>
+              <p>Gain deeper insights into your form submissions. Track user engagement, response trends, and overall performance to optimize your strategy.</p>
+              </div>
           </div>
           <div className="col">
             <div className="text-center d-flex flex-column align-items-center px-xxl-4">
@@ -60,7 +59,7 @@ const FeaturesSection = () => {
               </svg>
               <h3 className="h4 mb-2">Export Data</h3>
               <p className="text-muted text-center">
-                A elementum, imperdiet enim, pretium etiam facilisi in aenean quam inrean mauris ultrices interdum congue ut, dictum et tortor.
+              <p>Efficiently export your data in multiple formats for detailed analysis and reporting, making it easier to collaborate and share insights.</p>
               </p>
             </div>
           </div>
@@ -72,8 +71,8 @@ const FeaturesSection = () => {
                 <path className="text-[#f3e9c0]" d="M44.277 60.0886C42.7148 59.755 33.1954 59.755 31.6332 60.0886C30.2977 60.397 28.8535 61.1146 28.8535 62.6883C28.9312 64.1895 29.8101 65.5145 31.0276 66.3549L31.0245 66.358C32.5991 67.5855 34.4471 68.366 36.382 68.6461C37.4131 68.7877 38.4629 68.7814 39.5313 68.6461C41.4631 68.366 43.3111 67.5855 44.8857 66.358L44.8826 66.3549C46.1001 65.5145 46.9791 64.1895 47.0567 62.6883C47.0567 61.1146 45.6125 60.397 44.277 60.0886Z" fill="currentColor"></path>
               </svg>
               <h3 className="h4 mb-2">Notifications</h3>
-              <p>Diam, suspendisse velit cras ac. Lobortis diam volutpat, eget pellentesque viverra  inter vivamus id porta fermentum turpis.</p>
-            </div>
+              <p>Stay updated with instant notifications. Get alerts on form submissions, updates, or any critical actions in real-time, ensuring you never miss a beat.</p>
+              </div>
           </div>
           <div className="col">
             <div className="text-center px-xxl-4">
@@ -83,8 +82,8 @@ const FeaturesSection = () => {
                 <path className="text-blue-500" fillRule="evenodd" clipRule="evenodd" d="M28.5447 35.5859H39.1229C40.4072 35.5859 41.451 34.5452 41.451 33.2609C41.451 31.9765 40.4072 30.9327 39.1229 30.9327H28.5447C27.2604 30.9327 26.2197 31.9765 26.2197 33.2609C26.2197 34.5452 27.2604 35.5859 28.5447 35.5859ZM28.5448 51.1926H45.5573C46.8417 51.1926 47.8854 50.152 47.8854 48.8676C47.8854 47.5833 46.8417 46.5395 45.5573 46.5395H28.5448C27.2605 46.5395 26.2198 47.5833 26.2198 48.8676C26.2198 50.152 27.2605 51.1926 28.5448 51.1926Z" fill="currentColor"></path>
               </svg>
               <h3 className="h4 mb-2">Multiple mails &amp; Forms</h3>
-              <p>Mi feugiat hac id in. Sit elit placerat lacus nibh lorem ridiculus lectus  porttitor tincidunt sapien luctus tristique quam aenean accumsan.</p>
-            </div>
+              <p>Manage multiple forms and email accounts with ease. Simplify your workflow and enhance productivity with our versatile platform.</p>
+              </div>
           </div>
           <div className="col">
             <div className="text-center px-xxl-4">
@@ -93,8 +92,8 @@ const FeaturesSection = () => {
                 <path className="text-[#f3e9c0]" d="M35.8712 44.753C35.2672 44.756 34.6632 44.5385 34.1975 44.0911L28.2075 38.3301C27.2825 37.4353 27.2731 35.9828 28.1886 35.0819C29.1041 34.1779 30.5985 34.1687 31.5265 35.0605L35.8366 39.2035L46.3602 28.8276C47.2788 27.9236 48.7732 27.9144 49.6981 28.8061C50.6262 29.7009 50.6357 31.1565 49.7202 32.0543L37.5355 44.0696C37.0762 44.5231 36.4753 44.7499 35.8712 44.753Z" fill="currentColor"></path>
               </svg>
               <h3 className="h4 mb-2">Data security</h3>
-              <p>Aliquam malesuada neque eget elit nulla vestibulum nunc cras. Neque, morbi non arcu sapien luctus ullamcorper lectus efficitur.</p>
-            </div>
+              <p>Your data is safeguarded with our industry-standard encryption and security protocols, giving you peace of mind while managing your information.</p>
+              </div>
           </div>
         </div>
       </div>

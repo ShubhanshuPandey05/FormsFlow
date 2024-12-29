@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const Footer = () => {
   return (
@@ -27,7 +28,7 @@ const Footer = () => {
                 <span className='font-bold text-[#02195c]'>FormsFlow</span>
               </Link>
               <p className="fs-sm pb-2 pb-md-3 mb-3">
-                Tellus non diam morbi quam vel venenatis proin sed. Dolor elementum nunc dictum.
+                Simplifying form submissions and data management for modern businesses.
               </p>
               <div className="d-flex gap-3">
                 <a
@@ -57,18 +58,27 @@ const Footer = () => {
               <div className="row row-cols-1 row-cols-sm-3">
                 <div className="col mb-3 mb-md-0">
                   <ul className="nav flex-column">
-                    <li><Link className="nav-link fw-normal py-1 px-0" to="#">Features</Link></li>
-                    <li><Link className="nav-link fw-normal py-1 px-0" to="#">How it works</Link></li>
-                    {/* <li><Link className="nav-link fw-normal py-1 px-0" to="#">Reviews</Link></li>
-                    <li><Link className="nav-link fw-normal py-1 px-0" to="#">FAQ</Link></li> */}
+                    <li>
+                      <Link className="nav-link fw-normal py-1 px-0" to="/features">Features</Link>
+                    </li>
+                    <li>
+                      <HashLink
+                        className="nav-link fw-normal py-1 px-0"
+                        smooth
+                        to="/#howitworks"
+                      >
+                        How it works
+                      </HashLink>
+                    </li>
                   </ul>
                 </div>
-                <div className="col mb-4 mb-md-0">
+
+                {/* <div className="col mb-4 mb-md-0">
                   <ul className="nav flex-column">
                     <li><Link className="nav-link fw-normal py-1 px-0" to="#">Terms of service</Link></li>
                     <li><Link className="nav-link fw-normal py-1 px-0" to="#">Privacy policy</Link></li>
                   </ul>
-                </div>
+                </div> */}
                 {/* <div className="col">
                   <a className="btn btn-secondary px-3 py-2 mb-3 me-3 me-md-0" href="#">
                     <img
@@ -99,7 +109,7 @@ const Footer = () => {
                     />
                   </a>
                 </div> */}
-                <div className="col">
+                <div className="col-md-6">
                   <div className="contact-details">
                     <h6 className="fw-bold mb-2">Contact Us</h6>
                     <p className="mb-1">Email: formsflow.services@gmail.com</p>

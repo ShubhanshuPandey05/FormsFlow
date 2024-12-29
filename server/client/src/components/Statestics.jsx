@@ -2,15 +2,20 @@
  * SkillsSection Component
  */
 import React, { useEffect, useState } from "react";
-// import "./SkillsSection.css"; // Optional: Add your CSS file for styling
+import { useLoading } from "../context/LoadingContext";
+// import "./SkillsSection.css"; // Optional: Add your CSS file for styling4
 
 const SkillsSection = () => {
     const [stats,setStats] = useState({});
+    const { showLoading, hideLoading } = useLoading();
+
     useEffect(() => {
         const getData = async () => {
-            const response = await fetch('https://formsflow.onrender.com/api/getdata', {
+            // const response = await fetch('https://formsflow.onrender.com/api/getdata', {
             // const response = await fetch('https://forms-flow-api.vercel.app/api/getdata', {
-            // const response = await fetch('http://localhost:3000/api/getdata', {
+            showLoading();
+
+            const response = await fetch('http://localhost:3000/api/getdata', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -21,6 +26,8 @@ const SkillsSection = () => {
             console.log(data);
             
             setStats(data)
+
+            hideLoading();
         }
 
         getData();

@@ -16,8 +16,8 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
             try {
                 const storedUser = localStorage.getItem("authUser")
                 const parsedUser = JSON.parse(storedUser);
-                const response = await fetch(`https://forms-flow-api.vercel.app/api/mail/getmail`, {
-                // const response = await fetch(`http://localhost:3000/api/mail/getmail`, {
+                // const response = await fetch(`https://forms-flow-api.vercel.app/api/mail/getmail`, {
+                const response = await fetch(`http://localhost:3000/api/mail/getmail`, {
                     // const response = await fetch(`${process.env.BASE_LINK}/mail/getmail`, {
 
                     method: 'POST',
@@ -27,8 +27,8 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
                     credentials: "include",
                     body: JSON.stringify({ email: parsedUser.Email })
                 })
-                const response2 = await fetch(`https://forms-flow-api.vercel.app/api/form/getform`, {
-                // const response2 = await fetch(`http://localhost:3000/api/form/getform`, {
+                // const response2 = await fetch(`https://forms-flow-api.vercel.app/api/form/getform`, {
+                const response2 = await fetch(`http://localhost:3000/api/form/getform`, {
                     // const response2 = await fetch(`${process.env.BASE_LINK}/api/form/getform`, {
                     method: 'POST',
                     headers: {
@@ -76,12 +76,12 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
     const handleFormSelection = (form) => {
         if (form == selectedForm) {
             console.log("hiii");
-            
+
             setSelectedForm('');
             return
         }
         console.log("hello");
-        
+
         setSelectedForm(form);
     };
 
@@ -92,8 +92,8 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (formName.trim() === '') return;
-        const response = await fetch('https://forms-flow-api.vercel.app/api/form/addform', {
-        // const response = await fetch('http://localhost:3000/api/form/addform', {
+        // const response = await fetch('https://forms-flow-api.vercel.app/api/form/addform', {
+        const response = await fetch('http://localhost:3000/api/form/addform', {
             // const response = await fetch(`${process.env.BASE_LINK}/form/addform`, {
             method: 'POST',
             headers: {
@@ -166,49 +166,53 @@ const Sidebar = ({ setSelectedForm, selectedForm }) => {
 
                 <hr />
 
-                {/* Forms Section with Plus Icon */}
-                <div className="p-4 flex items-center justify-between">
-                    <h1 className="text-black font-bold text-2xl">Forms</h1>
-                    <button
-                        onClick={handleCreateFormToggle}
-                        className="text-gray-500 p-2 rounded-full hover:bg-gray-200 focus:outline-none"
-                        aria-label="Add form"
-                    >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                {/* Form Creation Input */}
-                {showCreateForm && (
-                    <div className="p-4">
-                        <form onSubmit={handleFormSubmit} className="flex flex-col space-y-2">
-                            <label htmlFor="formName" className="text-lg font-semibold">Form Name</label>
-                            <input
-                                id="formName"
-                                type="text"
-                                className="p-2 border border-gray-300 rounded-lg"
-                                placeholder="Enter form name"
-                                value={formName}
-                                onChange={handleFormNameChange}
-                            />
-                            <button type="submit" className="p-2 bg-blue-600 text-white rounded-lg">Create Form</button>
-                        </form>
+                {selectedEmail ? <div>
+                    {/* Forms Section with Plus Icon */}
+                    <div className="p-4 flex items-center justify-between">
+                        <h1 className="text-black font-bold text-2xl">Forms</h1>
+                        <button
+                            onClick={handleCreateFormToggle}
+                            className="text-gray-500 p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+                            aria-label="Add form"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                        </button>
                     </div>
-                )}
 
-                {/* List of Created Forms */}
-                <div className="p-4">
-                    <h2 className="text-lg font-semibold">Your Forms</h2>
-                    <ul className="list-disc ml-5 mt-2">
-                        {formList.map((form, index) => (
-                            <button key={index} onClick={() => handleFormSelection(form)} className={`block text-left w-full py-2 px-4 hover:bg-gray-200 ${selectedForm == form ? `bg-gray-200`:''}`}>
-                                {form}
-                            </button>
-                        ))}
-                    </ul>
-                </div>
+                    {/* Form Creation Input */}
+                    {showCreateForm && (
+                        <div className="p-4">
+                            <form onSubmit={handleFormSubmit} className="flex flex-col space-y-2">
+                                <label htmlFor="formName" className="text-lg font-semibold">Form Name</label>
+                                <input
+                                    id="formName"
+                                    type="text"
+                                    className="p-2 border border-gray-300 rounded-lg"
+                                    placeholder="Enter form name"
+                                    value={formName}
+                                    onChange={handleFormNameChange}
+                                />
+                                <button type="submit" className="p-2 bg-blue-600 text-white rounded-lg">Create Form</button>
+                            </form>
+                        </div>
+                    )}
+
+                    {/* List of Created Forms */}
+                    <div className="p-4">
+                        <h2 className="text-lg font-semibold">Your Forms</h2>
+                        <ul className="list-disc ml-5 mt-2">
+                            {formList.map((form, index) => (
+                                <button key={index} onClick={() => handleFormSelection(form)} className={`block text-left w-full py-2 px-4 hover:bg-gray-200 ${selectedForm == form ? `bg-gray-200` : ''}`}>
+                                    {form}
+                                </button>
+                            ))}
+                        </ul>
+                    </div>
+                </div>:""
+
+                }
             </div>
         </div>
     );

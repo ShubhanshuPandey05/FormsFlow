@@ -4,7 +4,11 @@ import { Mail, MailToBe } from '../models/mailModel.js';
 import { User } from '../models/userModel.js';
 import Form from '../models/formModel.js';
 import MailData from '../models/mailDataModel.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 const transporter = nodemailer.createTransport({
@@ -383,14 +387,14 @@ export const sendMail = async (req, res) => {
     <table style="width: 100%; border-collapse: collapse;">
         <tbody>
             ${Object.entries(formData)
-              .map(
+            .map(
                 ([key, value]) => `
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 8px;">${key}</td>
                     <td style="border: 1px solid #ddd; padding: 8px;">${value}</td>
                 </tr>`
-              )
-              .join("")}
+            )
+            .join("")}
         </tbody>
     </table>`;
 
@@ -484,11 +488,14 @@ export const sendMail = async (req, res) => {
         const mailData = await MailData.findOne({ subject: `New Submission For ${savedForm.Name}`, text: formData })
         savedForm.Total_Submission.push(mailData._id)
         await savedForm.save();
-        res.status(200).json({ message: 'Email sent successfully', info });
+        res.status(200).sendFile(path.join(__dirname, 'thankyou.html'));
     });
 };
+
+
+
 export const sendMailWithoutSignUp = async (req, res) => {
-    const email =  req.params.mail;
+    const email = req.params.mail;
     const formData = req.body;
     // console.log("Received form data:", formData);
 
@@ -497,14 +504,14 @@ export const sendMailWithoutSignUp = async (req, res) => {
     <table style="width: 100%; border-collapse: collapse;">
         <tbody>
             ${Object.entries(formData)
-              .map(
+            .map(
                 ([key, value]) => `
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 8px;">${key}</td>
                     <td style="border: 1px solid #ddd; padding: 8px;">${value}</td>
                 </tr>`
-              )
-              .join("")}
+            )
+            .join("")}
         </tbody>
     </table>`;
 
@@ -593,17 +600,19 @@ export const sendMailWithoutSignUp = async (req, res) => {
             console.error("Error sending email:", error);
             return res.status(500).json({ message: 'Error sending email', error });
         }
+        const newMailData = new MailData({ subject: `New Submission`, text: formData })
+        await newMailData.save()
         res.status(200).json({ message: 'Email sent successfully', info });
     });
 };
 export const sendMailWithoutSignUpCustom = async (req, res) => {
     // console.log("hii");
-    const email =  req.params.mail;
-    const {heading} = req.body;
-    const {formData} = req.body;
-    const {text} = req.body;
+    const email = req.params.mail;
+    const { heading } = req.body;
+    const { formData } = req.body;
+    const { text } = req.body;
     // console.log("hii1");
-    
+
     // console.log("Received form data:", formData);
 
     // Format formData into a string
@@ -611,14 +620,14 @@ export const sendMailWithoutSignUpCustom = async (req, res) => {
     <table style="width: 100%; border-collapse: collapse;">
         <tbody>
             ${Object.entries(formData)
-              .map(
+            .map(
                 ([key, value]) => `
                 <tr>
                     <td style="border: 1px solid #ddd; padding: 8px;">${key}</td>
                     <td style="border: 1px solid #ddd; padding: 8px;">${value}</td>
                 </tr>`
-              )
-              .join("")}
+            )
+            .join("")}
         </tbody>
     </table>`;
 
@@ -712,6 +721,8 @@ export const sendMailWithoutSignUpCustom = async (req, res) => {
             console.error("Error sending email:", error);
             return res.status(500).json({ message: 'Error sending email', error });
         }
+        const newMailData = new MailData({ subject: `New Submission`, text: formData })
+        await newMailData.save()
         res.status(200).json({ message: 'Email sent successfully', info });
     });
 };

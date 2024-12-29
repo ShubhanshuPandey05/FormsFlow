@@ -18,7 +18,7 @@ const LoginPage = () => {
     e.preventDefault();
     // Handle login logic here
 
-    console.log(Email, Password);
+    // console.log(Email, Password);
 
     await login({ Email, Password });
   };

@@ -1,4 +1,3 @@
-// src/components/SignupPage.js
 import React, { useState } from 'react';
 import { useSignUp, useSignUpValidation } from '../hooks/useSignUp';
 import { Link } from 'react-router-dom';
@@ -28,8 +27,7 @@ const SignupPage = () => {
     e.preventDefault();
 
     // Handle signup logic here
-    await signUp({ Email, Password, Name });
-    setIsVisible(true);
+    await signUp({ Email, Password, Name, setIsVisible });
   };
   const handleSubmit2 = async (e) => {
     e.preventDefault();

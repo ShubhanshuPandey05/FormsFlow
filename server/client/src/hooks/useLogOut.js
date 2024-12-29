@@ -7,8 +7,8 @@ const useLogOut = () => {
   const { setIsAuth } = useAuthContext();
 
   const logOut = async () => {
-    const response = await fetch(`https://forms-flow-api.vercel.app/api/auth/logOut`, {
-    // const response = await fetch(`http://localhost:3000/api/auth/logOut`, {
+    // const response = await fetch(`https://forms-flow-api.vercel.app/api/auth/logOut`, {
+    const response = await fetch(`http://localhost:3000/api/auth/logOut`, {
     // const response = await fetch(`${process.env.BASE_LINK}/auth/logOut`, {
       method: "POST",
       headers: {

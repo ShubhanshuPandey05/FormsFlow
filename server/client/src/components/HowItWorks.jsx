@@ -1,6 +1,7 @@
 import React from 'react';
 import 'aos/dist/aos.css'; // Include AOS styles
 import AOS from 'aos'; // Import AOS
+import { Link } from 'react-router-dom';
 
 const HowItWorks = () => {
   React.useEffect(() => {
@@ -8,7 +9,7 @@ const HowItWorks = () => {
   }, []);
 
   return (
-    <section className="overflow-hidden py-5 my-md-2 my-xl-4 my-xxl-5">
+    <section className="overflow-hidden py-5 my-md-2 my-xl-4 my-xxl-5" id='howitworks'>
       <div className="container py-2 py-sm-4 py-lg-5">
         <h2 className="h1 text-center pb-3 mb-3 mb-lg-4 mt-xxl-2">How does it work?</h2>
 
@@ -43,12 +44,11 @@ const HowItWorks = () => {
               <span className="badge fs-sm bg-[#3b82f6] bg-opacity-10 text-[#3b82f6] mb-3 mb-lg-4">Step 01</span>
               <h3 className="h2 mb-3 mb-lg-4">Connect your site to the platform using a code</h3>
               <p className="pb-1 pb-lg-0 mb-4 mb-lg-5">
-                Nec id eget malesuada urna at sed est adipiscing auctor at massa id duis fames ut condimentum velit est,
-                donec mauris tortor massa et viverra.
+                Sign in to our platform and configure your setup by adding your desired email to receive form submissions. Create a custom form on our website and receive an initial form code with our platform's link as the form's action and method attributes. Simply copy and paste this code into your website’s codebase to enable seamless form submissions.
               </p>
-              <a className="btn btn-outline-primary hover:bg-blue-800 rounded-pill border-[#3b82f6] text-[#3b82f6]" href="#">
+              <Link className="btn btn-outline-primary hover:bg-blue-800 rounded-pill border-[#3b82f6] text-[#3b82f6]" to="/get-started">
                 Get connected
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -120,14 +120,17 @@ const HowItWorks = () => {
               <span className="badge fs-sm bg-opacity-10 bg-[#3b82f6] text-[#3b82f6] mb-3 mb-lg-4">Step 02</span>
               <h3 className="h2 mb-3 mb-lg-4">Set up important dashboard metrics</h3>
               <ul className="list-unstyled mb-0">
-                <li className="d-flex pt-1 mt-2">
-                  <i className="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Forecasting and recommendations
+                <li className="d-flex pt-1 mt-2 justify-center items-center">
+                  <i className="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Create multiple forms under a single email for better organization.
                 </li>
-                <li className="d-flex pt-1 mt-2">
-                  <i className="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Identification of patterns, analysis
+                <li className="d-flex pt-1 mt-2 justify-center items-center">
+                  <i className="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Add multiple emails to your account, enabling flexible workflows.
                 </li>
-                <li className="d-flex pt-1 mt-2">
-                  <i className="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Segmentation by various methods
+                <li className="d-flex pt-1 mt-2 justify-center items-center">
+                  <i className="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Receive all form submissions instantly in your connected email accounts.
+                </li>
+                <li className="d-flex pt-1 mt-2 justify-center items-center">
+                  <i className="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Access and manage submission data directly through our user-friendly platform.
                 </li>
               </ul>
             </div>
@@ -202,12 +205,11 @@ const HowItWorks = () => {
               <span className="badge fs-sm bg-opacity-10 bg-[#3b82f6] text-[#3b82f6] mb-3 mb-lg-4">Step 03</span>
               <h3 className="h2 mb-3 mb-lg-4">Download the data in a convenient format</h3>
               <p className="pb-1 pb-lg-0 mb-4 mb-lg-5">
-                Bibendum velit mi, ac sed ac malesuada ultrices non lectus mi pellentesque vel at tempus cras sed a
-                eleifend augue amet mauris, leo ac amet erat.
+                Easily export your form submissions in formats like Excel, PDF, or text files. Organize and analyze your data with convenience using our platform’s intuitive export tools. Stay in control of your submissions and insights anytime.
               </p>
-              <a className="btn btn-outline-primary hover:bg-blue-800 border-[#3b82f6] text-[#3b82f6] rounded-pill" href="#">
+              <Link className="btn btn-outline-primary hover:bg-blue-800 border-[#3b82f6] text-[#3b82f6] rounded-pill" to="/get-started">
                 Get connected
-              </a>
+              </Link>
             </div>
           </div>
         </div>
