@@ -61,22 +61,22 @@ app.get('*', (req, res) => {
 });
 
 
-// function pingServer() {
-//   fetch('https://order-flow-api-ek8r.onrender.com')
-//       .then(response => {
-//           if (response.ok) {
-//               console.log('Server is reachable');
-//           } else {
-//               console.error('Server responded with an error:', response.status);
-//           }
-//       })
-//       .catch(error => {
-//           console.error('Error pinging the server:', error);
-//       });
-// }
+function pingServer() {
+  fetch('https://fifth-season-decor-order-app-4s37.onrender.com')
+      .then(response => {
+          if (response.ok) {
+              console.log('Server is reachable');
+          } else {
+              console.error('Server responded with an error:', response.status);
+          }
+      })
+      .catch(error => {
+          console.error('Error pinging the server:', error);
+      });
+}
 
-// // Ping the server every 30 seconds
-// setInterval(pingServer, 30000);
+// Ping the server every 30 seconds
+setInterval(pingServer, 30000);
 
 app.listen(PORT, () => {
   connectionToDatabase();
