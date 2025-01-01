@@ -57,7 +57,8 @@ const useSignUpValidation = () => {
         if (!success) return;
 
 
-        let response = await fetch(`http://localhost:3000/api/auth/signUp/otp`, {
+        let response = await fetch(`/api/auth/signUp/otp`, {
+        // let response = await fetch(`http://localhost:3000/api/auth/signUp/otp`, {
             // let response = await fetch(`${process.env.BASE_LINK}/auth/signUp/otp`, {
             method: "post",
             headers: {
