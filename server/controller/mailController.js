@@ -333,7 +333,7 @@ export const mailVerification = async (req, res) => {
         await MailToBe.deleteOne({ _id: data._id });
 
         // Redirect directly to a new page
-        res.redirect('http://localhost:5173/');
+        res.redirect('https://forms-flow.onrender.com/');
     } catch (error) {
         console.error("Error in mailVerification function:", error);
         res.status(500).json({ message: 'An error occurred', error });
@@ -605,6 +605,10 @@ export const sendMailWithoutSignUp = async (req, res) => {
         res.status(200).sendFile(path.join(__dirname, 'thankyou.html'));
     });
 };
+
+
+
+
 export const sendMailWithoutSignUpCustom = async (req, res) => {
     // console.log("hii");
     const email = req.params.mail;
