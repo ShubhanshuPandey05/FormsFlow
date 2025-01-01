@@ -105,12 +105,12 @@ export const signUpValidation = async (req, res) => {
             const newMail = new Mail({ Email, user: newUser._id });
             await newMail.save();
             const mail = await Mail.findOne({ Email });
-            const user = await User.findById(userId);
-            if (!user.Mails) {
-                user.Mails = [];
+            const userrr = await User.findById(newUser._id);
+            if (!userrr.Mails) {
+                userrr.Mails = [];
             }
-            user.Mails.push(mail._id);
-            await user.save();
+            userrr.Mails.push(mail._id);
+            await userrr.save();
 
             const token = generateAndSetCookies(userr._id);
             // console.log(token);
