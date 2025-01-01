@@ -28,20 +28,20 @@ export const signUp = async (req, res) => {
                     text: Otp
                 }
             };
-    
+
             const ress = {
                 status: (statusCode) => ({
                     json: (message) => console.log(`Status: ${statusCode}, Message:`, message),
                 })
             };
-    
+
             // Call the mailer function with the mock req and res
             const response = mailer(reqq, ress);
             res.status(200).json({
                 _id: userToBe._id,
                 email: userToBe.Email,
             })
-             
+
         }
         else {
             let newUser = new UserToBe({ Email, Password: hashPassword, Otp, Name });
@@ -101,6 +101,16 @@ export const signUpValidation = async (req, res) => {
             await newUser.save();
             let userr = await User.findOne({ Email: Email });
             await UserToBe.deleteOne({ _id: user._id });
+
+            const newMail = new Mail({ Email, user: newUser._id });
+            await newMail.save();
+            const mail = await Mail.findOne({ Email });
+            const user = await User.findById(userId);
+            if (!user.Mails) {
+                user.Mails = [];
+            }
+            user.Mails.push(mail._id);
+            await user.save();
 
             const token = generateAndSetCookies(userr._id);
             // console.log(token);
