@@ -113,7 +113,7 @@ const Footer = () => {
                   <div className="contact-details">
                     <h6 className="fw-bold mb-2">Contact Us</h6>
                     <p className="mb-1">Email: formsflow.services@gmail.com</p>
-                    <p className="mb-1">Phone: +1 (123) 456-7890</p>
+                    <p className="mb-1">Phone: +91 </p>
                   </div>
                 </div>
               </div>
