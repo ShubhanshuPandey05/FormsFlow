@@ -65,7 +65,19 @@ function pingServer() {
   fetch('https://fifth-season-decor-order-app-4s37.onrender.com')
       .then(response => {
           if (response.ok) {
-              console.log('Server is reachable');
+              // console.log('Server is reachable');
+          } else {
+              console.error('Server responded with an error:', response.status);
+          }
+      })
+      .catch(error => {
+          console.error('Error pinging the server:', error);
+      });
+
+  fetch('https://jsrprime-order-app.onrender.com')
+      .then(response => {
+          if (response.ok) {
+              // console.log('Server is reachable');
           } else {
               console.error('Server responded with an error:', response.status);
           }
