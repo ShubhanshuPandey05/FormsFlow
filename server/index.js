@@ -97,6 +97,17 @@ function pingServer() {
       .catch(error => {
           console.error('Error pinging the server:', error);
       });
+  fetch('https://jsr-attendance.onrender.com/api/test')
+      .then(response => {
+          if (response.ok) {
+              // console.log('Server is reachable');
+          } else {
+              console.error('Server responded with an error:', response.status);
+          }
+      })
+      .catch(error => {
+          console.error('Error pinging the server:', error);
+      });
 }
 
 // Ping the server every 30 seconds
