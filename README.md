@@ -17,7 +17,7 @@ FormsFlow is a powerful and flexible backend system that handles dynamic form su
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 FormsFlow/
 ├── controllers/
 ├── models/
@@ -25,42 +25,42 @@ FormsFlow/
 ├── utils/
 ├── config/
 └── server.js
-\`\`\`
+```
 
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
 
-\`\`\`bash
+```bash
 git clone https://github.com/ShubhanshuPandey05/FormsFlow.git
 cd FormsFlow
-\`\`\`
+```
 
 ### 2. Install Dependencies
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 3. Setup Environment Variables
 
 Create a `.env` file in the root directory:
 
-\`\`\`env
+```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 EMAIL_USER=your_email@example.com
 EMAIL_PASS=your_email_password_or_app_password
 JWT_SECRET=your_jwt_secret
-\`\`\`
+```
 
 > 💡 Tip: Use environment-specific values and never commit `.env` files.
 
 ### 4. Start the Server
 
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
 The server should now be running at `http://localhost:5000`.
 
